@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Preview only. Remove restriction after verification and launch.
