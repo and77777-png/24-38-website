@@ -36,7 +36,7 @@
     const open = nav.classList.toggle('show');
     e.currentTarget.setAttribute('aria-expanded',String(open));
   });
-  nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('show')));
+  nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('show');document.querySelector('.menu-toggle')?.setAttribute('aria-expanded','false');}));
   const modalBack = $('#request-modal');
   const close = () => { modalBack?.classList.remove('open'); document.body.classList.remove('modal-open'); };
   const open = (target='') => {
@@ -105,7 +105,7 @@
     const subject=$('#modal-subject').value.trim();
     const note=$('#modal-notes').value.trim();
     if(!name||!contact){$('#modal-feedback').textContent='Укажите имя и контакт для связи.';return null;}
-    return ['Заявка для 24-38','Имя: '+name,'Контакт: '+contact,'Интересует: '+(subject||'Консультация'),'Комментарий: '+(note||'—'),'','Демоверсия сайта. Заявка скопирована пользователем, но не передана студии.'].join('\n');
+    return ['Заявка для 24/38','Имя: '+name,'Контакт: '+contact,'Интересует: '+(subject||'Консультация'),'Комментарий: '+(note||'—'),'','Демоверсия сайта. Заявка скопирована пользователем, но не передана студии.'].join('\n');
   };
   $('#copy-request')?.addEventListener('click',async()=>{
     const str=buildText();if(!str)return;
@@ -117,5 +117,21 @@
     const a=document.createElement('a');const blob=new Blob([str],{type:'text/plain;charset=utf-8'});
     const url=URL.createObjectURL(blob);a.href=url;a.download='zayavka-24-38.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
     $('#modal-feedback').textContent='Файл заявки сохранён на ваше устройство. На сервер данные не отправлялись.';
+  });
+})();
+
+
+/* V4 progressive enhancement: readable without JS and reduced-motion friendly. */
+(() => {
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const targets = document.querySelectorAll('.section-head, .service-tile, .film-preview, .service-row, .branch, .project-card, .visual-story .container');
+  const visible = new IntersectionObserver((entries, observer) => {
+    entries.forEach(({target, isIntersecting}) => {
+      if(isIntersecting){ target.classList.add('reveal-in'); observer.unobserve(target); }
+    });
+  }, {threshold:.08,rootMargin:'0px 0px 45px 0px'});
+  targets.forEach(el => {
+    el.classList.add('reveal-ready');
+    visible.observe(el);
   });
 })();
