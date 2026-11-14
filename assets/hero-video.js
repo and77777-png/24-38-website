@@ -61,8 +61,10 @@
       if (userInitiated) message('Не удалось запустить видео в этом браузере.');
       return;
     }
-    if (attempted && typeof attempted.catch === 'function') {
-      attempted.catch(() => {
+    if (attempted && typeof attempted.then === 'function') {
+      attempted.then(() => {
+        if (!video.paused && video.readyState >= 2) setPlaying(true);
+      }).catch(() => {
         setPlaying(false);
         if (userInitiated) {
           message('Браузер ограничил воспроизведение. Попробуйте открыть сайт в Safari.');
@@ -116,6 +118,6 @@
     reduceMotion.addListener(syncPlayback);
   }
 
-  setPlaying(false);
+  setPlaying(!video.paused && !video.ended && video.readyState >= 2);
   tryPlay(false);
 })();
