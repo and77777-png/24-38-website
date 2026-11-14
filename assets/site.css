@@ -111,7 +111,7 @@
 .hero-video-layer .hero-video:focus{outline:none}
 @media(max-width:920px){
   .hero-photo.hero-video-layer{inset:0;height:100%}
-  .hero-photo.hero-video-layer .hero-video{width:83%;height:100%;right:0;object-position:center 52%}
+  .hero-photo.hero-video-layer .hero-video{width:83%;height:100%;right:0;object-position:center top}
   .hero-photo.hero-video-layer::after{background:linear-gradient(90deg,#070808f2,#070808c9 44%,#07080862),linear-gradient(0deg,#070808e7,transparent 31%)}
 }
 @media(max-width:600px){
