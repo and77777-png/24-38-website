@@ -76,3 +76,61 @@
 @media(max-width:760px){.map-intro{display:block}.map-intro>p{margin-top:12px}.branch-map-surface{height:330px;min-height:330px}.branch-map-sidebar{gap:14px}.map-selected h3{font-size:28px}}
 @media(max-width:430px){.map-showcase{margin-top:28px}.map-intro h2{font-size:clamp(30px,8.5vw,38px)}.branch-map-surface{height:285px;min-height:285px}.branch-map-sidebar{padding:16px}.map-branch-tabs{grid-template-columns:1fr;gap:7px}.map-branch-tab{display:grid;grid-template-columns:28px minmax(0,1fr);grid-template-rows:auto auto;gap:1px 10px;min-height:56px;padding:9px 11px}.map-branch-tab>span{grid-row:span 2;align-self:center}.map-branch-tab strong{font-size:15px}.map-branch-tab small{font-size:10px}.map-help{left:8px;right:8px;bottom:8px;gap:8px;padding:8px 10px}.map-help span{font-size:9px;letter-spacing:0}.map-help a{font-size:9px}.map-action-row .btn{width:100%;flex:0 0 100%}}
 @media(prefers-reduced-motion:reduce){.map-branch-tab{transition:none}}
+
+
+/* 24/38 — cinematic video hero (supplied studio footage), desktop and mobile */
+.hero-photo.hero-video-layer{
+  inset:0;
+  height:100%;
+  width:100%;
+  background:#08090a url("studio-worktime-poster.jpg") right center / auto 100% no-repeat;
+  overflow:hidden;
+}
+.hero-photo.hero-video-layer .hero-video{
+  position:absolute;
+  top:0;
+  right:0;
+  height:100%;
+  width:65%;
+  max-width:none;
+  display:block;
+  object-fit:cover;
+  object-position:center top;
+  filter:brightness(.64) contrast(1.12) saturate(.92);
+  transform:translateZ(0);
+}
+.hero-photo.hero-video-layer::after{
+  z-index:1;
+  background:
+    linear-gradient(90deg,#070808 0%,#070808fa 15%,#070808e7 31%,#07080892 53%,#0708085e 100%),
+    linear-gradient(0deg,#070808e8 0%,transparent 26%),
+    linear-gradient(180deg,#070808a6 0%,transparent 28%);
+}
+.hero-video-layer video::-webkit-media-controls{display:none!important}
+.hero-video-layer video::-webkit-media-controls-start-playback-button{display:none!important}
+.hero-video-layer .hero-video:focus{outline:none}
+@media(max-width:920px){
+  .hero-photo.hero-video-layer{inset:0;height:100%}
+  .hero-photo.hero-video-layer .hero-video{width:83%;height:100%;right:0;object-position:center top}
+  .hero-photo.hero-video-layer::after{background:linear-gradient(90deg,#070808f2,#070808c9 44%,#07080862),linear-gradient(0deg,#070808e7,transparent 31%)}
+}
+@media(max-width:600px){
+  .hero{height:780px;min-height:780px}
+  .hero-inner{align-items:flex-start}
+  .hero-photo.hero-video-layer{inset:0!important;top:0!important;bottom:0!important;height:100%!important;width:100%}
+  .hero-photo.hero-video-layer .hero-video{inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;filter:brightness(.63) contrast(1.1) saturate(.8)}
+  .hero-photo.hero-video-layer::after{background:
+      linear-gradient(180deg,#070808e7 0%,#070808af 24%,#07080877 56%,#070808e8 100%),
+      linear-gradient(90deg,#0708087a,transparent 48%,#0708083b)}
+  .hero-copy{width:100%;padding:45px 0 0}
+  .hero-copy h1{text-shadow:0 3px 12px #0008}
+  .hero-buttons{margin-top:28px!important;position:relative}
+  .hero-counter{bottom:26px}
+}
+@media(max-width:370px){
+  .hero{height:770px;min-height:770px}
+  .hero-buttons{margin-top:24px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-video-layer .hero-video{display:none}
+}
