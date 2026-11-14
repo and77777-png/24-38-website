@@ -78,59 +78,121 @@
 @media(prefers-reduced-motion:reduce){.map-branch-tab{transition:none}}
 
 
-/* 24/38 — cinematic video hero (supplied studio footage), desktop and mobile */
+/* 24/38 — video hero v2: brighter, Safari-friendly, controlled fallback */
 .hero-photo.hero-video-layer{
   inset:0;
-  height:100%;
   width:100%;
+  height:100%;
   background:#08090a url("studio-worktime-poster.jpg") right center / auto 100% no-repeat;
   overflow:hidden;
 }
 .hero-photo.hero-video-layer .hero-video{
   position:absolute;
-  top:0;
+  inset:0 0 0 auto;
   right:0;
-  height:100%;
-  width:65%;
-  max-width:none;
   display:block;
+  width:65%;
+  height:100%;
+  max-width:none;
   object-fit:cover;
   object-position:center top;
-  filter:brightness(.64) contrast(1.12) saturate(.92);
-  transform:translateZ(0);
+  filter:brightness(1.04) contrast(1.04) saturate(1.08);
 }
 .hero-photo.hero-video-layer::after{
   z-index:1;
+  pointer-events:none;
   background:
-    linear-gradient(90deg,#070808 0%,#070808fa 15%,#070808e7 31%,#07080892 53%,#0708085e 100%),
-    linear-gradient(0deg,#070808e8 0%,transparent 26%),
-    linear-gradient(180deg,#070808a6 0%,transparent 28%);
+    linear-gradient(90deg,#070808fa 0%,#070808ef 17%,#070808b5 34%,#07080865 54%,#07080812 90%),
+    linear-gradient(0deg,#070808a8,transparent 24%),
+    linear-gradient(180deg,#07080861 0%,transparent 23%);
 }
 .hero-video-layer video::-webkit-media-controls{display:none!important}
 .hero-video-layer video::-webkit-media-controls-start-playback-button{display:none!important}
 .hero-video-layer .hero-video:focus{outline:none}
+.hero-video-play{
+  position:absolute;
+  right:max(28px,calc((100vw - 1370px)/2));
+  bottom:92px;
+  z-index:5;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:47px;
+  padding:12px 18px;
+  border:1px solid #ffd000dd;
+  background:#0a0b0bdb;
+  color:#ffdf4b;
+  box-shadow:0 8px 30px #000a;
+  font:800 11px/1.2 Manrope,Arial,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  backdrop-filter:blur(5px);
+}
+.hero-video-play span{font-size:16px}
+.hero-video-play:hover,.hero-video-play:focus-visible{background:#ffd000;color:#080808}
+.hero-video-play[hidden]{display:none!important}
 @media(max-width:920px){
   .hero-photo.hero-video-layer{inset:0;height:100%}
-  .hero-photo.hero-video-layer .hero-video{width:83%;height:100%;right:0;object-position:center top}
-  .hero-photo.hero-video-layer::after{background:linear-gradient(90deg,#070808f2,#070808c9 44%,#07080862),linear-gradient(0deg,#070808e7,transparent 31%)}
+  .hero-photo.hero-video-layer .hero-video{
+    inset:0 0 0 auto;
+    width:78%;
+    height:100%;
+    object-position:center top;
+    filter:brightness(1.06) saturate(1.07);
+  }
+  .hero-photo.hero-video-layer::after{
+    background:
+      linear-gradient(90deg,#070808f4,#070808b7 38%,#07080837 86%),
+      linear-gradient(0deg,#070808bb,transparent 25%);
+  }
+  .hero-video-play{right:20px;bottom:87px}
 }
 @media(max-width:600px){
   .hero{height:780px;min-height:780px}
   .hero-inner{align-items:flex-start}
-  .hero-photo.hero-video-layer{inset:0!important;top:0!important;bottom:0!important;height:100%!important;width:100%}
-  .hero-photo.hero-video-layer .hero-video{inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;filter:brightness(.63) contrast(1.1) saturate(.8)}
-  .hero-photo.hero-video-layer::after{background:
-      linear-gradient(180deg,#070808e7 0%,#070808af 24%,#07080877 56%,#070808e8 100%),
-      linear-gradient(90deg,#0708087a,transparent 48%,#0708083b)}
+  .hero-photo.hero-video-layer{
+    inset:0!important;
+    top:0!important;
+    bottom:0!important;
+    width:100%;
+    height:100%!important;
+    background-position:center 42%;
+    background-size:cover;
+  }
+  .hero-photo.hero-video-layer .hero-video{
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 48%;
+    filter:none; /* Avoid GPU-filter video freezing on some iPhone WebViews */
+  }
+  .hero-photo.hero-video-layer::after{
+    background:
+      linear-gradient(180deg,#070808b0 0%,#0708087f 21%,#0708082c 48%,#07080833 67%,#070808d3 100%),
+      linear-gradient(90deg,#07080854,transparent 55%,#07080815);
+  }
   .hero-copy{width:100%;padding:45px 0 0}
-  .hero-copy h1{text-shadow:0 3px 12px #0008}
+  .hero-copy h1{text-shadow:0 3px 14px #000b}
   .hero-buttons{margin-top:28px!important;position:relative}
   .hero-counter{bottom:26px}
+  .hero-video-play{
+    right:16px;
+    left:auto;
+    bottom:97px;
+    min-height:44px;
+    font-size:10px;
+    padding:11px 13px;
+  }
 }
 @media(max-width:370px){
   .hero{height:770px;min-height:770px}
   .hero-buttons{margin-top:24px!important}
+  .hero-video-play{bottom:92px}
 }
 @media(prefers-reduced-motion:reduce){
-  .hero-video-layer .hero-video{display:none}
+  /* Keep the poster/frame visible; JS requires a deliberate tap to play. */
+  .hero-video-layer .hero-video{display:block}
 }
