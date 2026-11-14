@@ -258,3 +258,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .hero-v4,.hero-v4 .hero__in{min-height:805px}
 }
 @media(prefers-reduced-motion:reduce){.hero-visual:after,.hero-v4 .hero-num{animation:none!important}}
+
+
+/* Compact phone contact action — mobile only, always functional. */
+.mobile-call{display:none}
+.branch-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.branch-actions .btn{padding:13px 17px;font-size:11px}
+.branch strong{color:#f6f1dd}
+.branch a[href^="tel:"]{color:var(--accent);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.reveal-ready{transition:opacity .65s ease,transform .65s ease}
+.reveal-ready:not(.reveal-in){opacity:0;transform:translateY(22px)}
+.reveal-ready.reveal-in{opacity:1;transform:translateY(0)}
+@media(max-width:880px){
+ body{padding-bottom:78px}
+ .mobile-call{display:flex;position:fixed;z-index:91;bottom:calc(12px + env(safe-area-inset-bottom,0px));left:16px;right:16px;height:54px;justify-content:center;align-items:center;gap:12px;background:var(--accent);border:1px solid #ffea6a;color:#080808;box-shadow:0 12px 35px #000c,0 0 26px #ffd0002e;font:900 14px 'Exo 2',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+ .mobile-call span{font-size:22px}
+ .mobile-call:active{transform:scale(.98)}
+}
+@media(max-width:350px){.mobile-call{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.reveal-ready,.reveal-ready:not(.reveal-in){opacity:1!important;transform:none!important;transition:none!important}}
