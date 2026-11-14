@@ -277,3 +277,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 @media(max-width:350px){.mobile-call{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.reveal-ready,.reveal-ready:not(.reveal-in){opacity:1!important;transform:none!important;transition:none!important}}
+
+/* Local, brand-owned fallback silhouette if the licensed photo cannot load. */
+.hero-visual{background:radial-gradient(ellipse at 55% 58%,#71520c4e,transparent 70%),url('car-outline.png') center 55%/90% auto no-repeat}
