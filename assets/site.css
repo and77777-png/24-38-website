@@ -97,11 +97,9 @@
   object-fit:cover;
   object-position:center 48%;
   filter:brightness(1.12) contrast(1.04) saturate(1.09);
-  opacity:0;
-  transition:opacity .45s ease;
+  opacity:1;
   transform:translateZ(0);
 }
-.hero-photo.hero-video-layer.is-playing .hero-video{opacity:1}
 .hero-photo.hero-video-layer::after{
   z-index:1;
   background:
