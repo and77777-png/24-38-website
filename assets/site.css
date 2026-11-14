@@ -95,8 +95,8 @@
   max-width:none;
   display:block;
   object-fit:cover;
-  object-position:center 48%;
-  filter:brightness(.72) contrast(1.12) saturate(.92);
+  object-position:center top;
+  filter:brightness(.64) contrast(1.12) saturate(.92);
   transform:translateZ(0);
 }
 .hero-photo.hero-video-layer::after{
