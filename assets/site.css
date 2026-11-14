@@ -45,12 +45,12 @@ h1,h2,h3,h4,p{overflow-wrap:break-word}h1,h2,h3{font-family:'Exo 2',Arial,sans-s
 .menu-toggle{display:none}
 /* Home hero: only the locally uploaded image, no legacy car layers */
 .hero-rebuilt{position:relative;isolation:isolate;min-height:min(850px,calc(100svh - 82px));height:720px;overflow:hidden;background:#080909}
-.hero-photo{position:absolute;inset:0;z-index:-2;pointer-events:none}
+.hero-photo{position:absolute;inset:0;z-index:0;pointer-events:none}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center center;filter:brightness(.78) contrast(1.2) saturate(1.12)}
 .hero-photo::after{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,#080809 0%,#080809f7 14%,#080809cc 36%,#08080927 66%,#08080909 100%),linear-gradient(0deg,#080809 0%,transparent 26%),linear-gradient(180deg,#080809a0 0%,transparent 23%)}
 .hero-photo::before{content:'';position:absolute;z-index:3;inset:0;opacity:.25;background:radial-gradient(circle at 70% 70%,#ffba0050,transparent 48%)}
-.hero-stripes{position:absolute;z-index:-1;inset:0;opacity:.16;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0%,transparent 19.9%,#ffffff25 20%,transparent 20.1%)}
-.hero-body{position:relative;min-height:inherit;height:100%;display:flex;align-items:center}
+.hero-stripes{position:absolute;z-index:1;inset:0;opacity:.16;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0%,transparent 19.9%,#ffffff25 20%,transparent 20.1%)}
+.hero-body{position:relative;z-index:2;min-height:inherit;height:100%;display:flex;align-items:center}
 .hero-copy{position:relative;z-index:3;width:min(725px,65%);padding:50px 0 82px}
 .hero-kicker{display:flex;gap:13px;align-items:center;flex-wrap:wrap;color:#e1ddcd;font:800 11px 'Exo 2',sans-serif;letter-spacing:.14em;text-transform:uppercase}
 .hero-kicker i{height:1px;width:24px;background:#b6a654}.pulsedot{width:9px;height:9px;border-radius:50%;background:var(--yellow);box-shadow:0 0 18px #ffcc00;animation:pulse 3.5s ease-in-out infinite}
