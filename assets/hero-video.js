@@ -1,93 +1,92 @@
-/* 24/38 — silent hero playback with resilient iPhone/WebView fallback. */
+/* 24/38 hero V3 — automatic muted inline background video; no controls or prompts.
+   Single decoder on phones; lazy ambient second layer only on wide desktops. */
 (() => {
   'use strict';
   const video = document.getElementById('hero-background-video');
-  const button = document.getElementById('hero-video-play');
   if (!video) return;
+  const ambient = document.getElementById('hero-video-ambient');
+  const desktop = window.matchMedia('(min-width: 921px) and (prefers-reduced-motion: no-preference)');
+  const dataSaver = Boolean(navigator.connection && navigator.connection.saveData);
+  const source = video.querySelector('source')?.getAttribute('src') || 'assets/studio-worktime.mp4';
 
-  // iOS and in-app browsers require these flags for inline, muted autoplay.
   video.muted = true;
   video.defaultMuted = true;
+  video.volume = 0;
   video.playsInline = true;
   video.setAttribute('muted', '');
   video.setAttribute('playsinline', '');
   video.setAttribute('webkit-playsinline', '');
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let manualStart = false;
-  let pending = false;
+  function autoplay() {
+    if (document.hidden || !video.paused) return;
+    try {
+      const attempt = video.play();
+      // Some iPhones reject unattended play. Leave the poster visible instead
+      // of inserting an unwanted button or blocking page interaction.
+      if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+    } catch (_) {}
+  }
 
-  function showManualPlay() {
-    if (!button) return;
-    if (video.paused) {
-      button.hidden = false;
-      button.setAttribute('aria-label', 'Запустить фоновое видео');
+  function stopAmbient() {
+    if (!ambient) return;
+    ambient.pause();
+    if (ambient.hasAttribute('src')) {
+      ambient.removeAttribute('src');
+      ambient.load();
     }
   }
-  function hideManualPlay() {
-    if (button) button.hidden = true;
-  }
-  function playVideo(fromGesture) {
-    if (fromGesture) manualStart = true;
-    if (document.hidden) return;
-    if (reduceMotion.matches && !manualStart) {
-      video.pause();
-      showManualPlay();
+
+  function syncAmbient() {
+    if (!ambient || document.hidden || !desktop.matches || dataSaver) {
+      stopAmbient();
       return;
     }
-    // A second automatic attempt must not interrupt an in-flight play().
-    if (pending || !video.paused) return;
-    video.muted = true;
-    const result = video.play();
-    if (result && typeof result.then === 'function') {
-      pending = true;
-      result.then(() => {
-        pending = false;
-        hideManualPlay();
-      }).catch(() => {
-        pending = false;
-        // Low Power Mode, autoplay restrictions or data-saving may block play.
-        showManualPlay();
-      });
-    } else if (video.paused) {
-      showManualPlay();
+    if (video.paused || video.readyState < 2) return;
+    ambient.muted = true;
+    ambient.defaultMuted = true;
+    ambient.playsInline = true;
+    ambient.setAttribute('muted', '');
+    ambient.setAttribute('playsinline', '');
+    if (!ambient.getAttribute('src')) {
+      ambient.src = source;
+      ambient.loop = true;
+      ambient.preload = 'metadata';
     }
-  }
-
-  button?.addEventListener('click', () => {
-    // Keep play() inside the real tap/click gesture for iOS.
-    manualStart = true;
-    pending = false;
-    video.muted = true;
-    try {
-      const result = video.play();
-      if (result && typeof result.catch === 'function') {
-        result.catch(showManualPlay);
+    function align() {
+      if (Math.abs(ambient.currentTime - video.currentTime) > .35) {
+        try { ambient.currentTime = video.currentTime; } catch (_) {}
       }
-    } catch (_) {
-      showManualPlay();
+      if (ambient.paused) {
+        try {
+          const attempt = ambient.play();
+          if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+        } catch (_) {}
+      }
+    }
+    if (ambient.readyState >= 2) align();
+    else ambient.addEventListener('canplay', align, { once:true });
+  }
+
+  video.addEventListener('playing', syncAmbient);
+  video.addEventListener('pause', () => ambient?.pause());
+  video.addEventListener('loadeddata', autoplay, { once:true });
+  video.addEventListener('canplay', autoplay, { once:true });
+  video.addEventListener('error', () => stopAmbient());
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      video.pause();
+      ambient?.pause();
+    } else {
+      autoplay();
+      syncAmbient();
     }
   });
-
-  video.addEventListener('playing', hideManualPlay);
-  video.addEventListener('pause', showManualPlay);
-  video.addEventListener('error', showManualPlay);
-
-  // Background tab throttling is fine, but no visibility observer that might
-  // incorrectly pause an onscreen video on a phone.
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) video.pause();
-    else playVideo(false);
-  });
-  window.addEventListener('pageshow', () => playVideo(false));
-  video.addEventListener('canplay', () => playVideo(false), { once: true });
-  if (typeof reduceMotion.addEventListener === 'function') {
-    reduceMotion.addEventListener('change', () => playVideo(false));
-  } else if (typeof reduceMotion.addListener === 'function') {
-    reduceMotion.addListener(() => playVideo(false));
+  window.addEventListener('pageshow', autoplay);
+  if (typeof desktop.addEventListener === 'function') {
+    desktop.addEventListener('change', syncAmbient);
+  } else if (typeof desktop.addListener === 'function') {
+    desktop.addListener(syncAmbient);
   }
-  playVideo(false);
-  window.setTimeout(() => {
-    if (video.paused) showManualPlay();
-  }, 1600);
+  autoplay();
 })();
