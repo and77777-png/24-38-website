@@ -173,3 +173,15 @@ body{background:linear-gradient(155deg,#303640 0%,#252a32 46%,#333a44 100%) fixe
 .hero{background:#242a32}
 .hero-photo.hero-video-layer::after{background:linear-gradient(90deg,rgba(21,25,31,.78),rgba(21,25,31,.47) 30%,rgba(21,25,31,.07) 70%),linear-gradient(0deg,rgba(21,25,31,.24),transparent 23%)}
 @media(max-width:600px){.hero-photo.hero-video-layer::after{background:linear-gradient(180deg,rgba(21,25,31,.73) 0%,rgba(21,25,31,.43) 24%,rgba(21,25,31,.06) 53%,rgba(21,25,31,.12) 74%,rgba(21,25,31,.65) 100%)}}
+
+
+/* Material continuity for secondary editorial surfaces. */
+.cta-panel{background:radial-gradient(circle at 88% 25%,#af9a4821,transparent 55%),linear-gradient(135deg,#444b55,#30363f)}
+.about-visual{background:#303740;border-color:#5d6571}
+.video-placeholder:nth-child(2){background:linear-gradient(140deg,#494b47,#303741)}
+.project-list .project:nth-child(4){background:linear-gradient(120deg,#414952,#2d343d)}
+.project-list .project:nth-child(5){background:linear-gradient(120deg,#464438,#303740)}
+.project-list .project:nth-child(6){background:linear-gradient(120deg,#3b444f,#2c333b)}
+.map-branch-tab:not(.active):hover{background:#4a515a}
+.header .nav.open{background:#303640}
+@media(max-width:600px){.header{background:rgba(31,35,42,.98)}}
