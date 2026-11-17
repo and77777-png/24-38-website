@@ -1,0 +1,97 @@
+{
+  "brand": "24/38",
+  "status": "assets-in-zip-pending-upload",
+  "note": "Фотографии подготовлены пользователем. Сведения о моделях автомобилей и марках материалов не утверждаются.",
+  "items": [
+    {
+      "slug": "mirror-ppf-work",
+      "sourcePhoto": 7,
+      "category": "ppf",
+      "categoryLabel": "Защита деталей",
+      "title": "Оклейка зеркала защитной плёнкой",
+      "description": "Работа мастера с защитной плёнкой на боковом зеркале автомобиля.",
+      "image": "assets/works/mirror-ppf-work.webp",
+      "thumbnail": "assets/works/mirror-ppf-work-sm.webp"
+    },
+    {
+      "slug": "front-grille-film",
+      "sourcePhoto": 9,
+      "category": "ppf",
+      "categoryLabel": "Защита кузова",
+      "title": "Оклейка передней части кузова",
+      "description": "Работа с прозрачной защитной плёнкой на передних элементах автомобиля.",
+      "image": "assets/works/front-grille-film.webp",
+      "thumbnail": "assets/works/front-grille-film-sm.webp"
+    },
+    {
+      "slug": "vw-white-emblem",
+      "sourcePhoto": 3,
+      "category": "styling",
+      "categoryLabel": "Детали и стайлинг",
+      "title": "Эмблема Volkswagen",
+      "description": "Крупный план эмблемы с белой подсветкой.",
+      "image": "assets/works/vw-white-emblem.webp",
+      "thumbnail": "assets/works/vw-white-emblem-sm.webp"
+    },
+    {
+      "slug": "mirror-ppf-side",
+      "sourcePhoto": 4,
+      "category": "ppf",
+      "categoryLabel": "Защита деталей",
+      "title": "Защитная плёнка на зеркале",
+      "description": "Нанесение защитной плёнки на боковое зеркало.",
+      "image": "assets/works/mirror-ppf-side.webp",
+      "thumbnail": "assets/works/mirror-ppf-side-sm.webp"
+    },
+    {
+      "slug": "vw-red-emblem",
+      "sourcePhoto": 2,
+      "category": "styling",
+      "categoryLabel": "Детали и стайлинг",
+      "title": "Эмблема с красной подсветкой",
+      "description": "Работа с эмблемой Volkswagen и красным световым акцентом.",
+      "image": "assets/works/vw-red-emblem.webp",
+      "thumbnail": "assets/works/vw-red-emblem-sm.webp"
+    },
+    {
+      "slug": "mirror-ppf-closeup",
+      "sourcePhoto": 6,
+      "category": "ppf",
+      "categoryLabel": "Защита деталей",
+      "title": "Проработка формы зеркала",
+      "description": "Работа с плёнкой на изгибе корпуса зеркала.",
+      "image": "assets/works/mirror-ppf-closeup.webp",
+      "thumbnail": "assets/works/mirror-ppf-closeup-sm.webp"
+    },
+    {
+      "slug": "ppf-detail-application",
+      "sourcePhoto": 1,
+      "category": "ppf",
+      "categoryLabel": "Защита кузова",
+      "title": "Монтаж защитной плёнки",
+      "description": "Мастер выравнивает прозрачную плёнку на элементе кузова.",
+      "image": "assets/works/ppf-detail-application.webp",
+      "thumbnail": "assets/works/ppf-detail-application-sm.webp"
+    },
+    {
+      "slug": "front-light-detail",
+      "sourcePhoto": 8,
+      "category": "optics",
+      "categoryLabel": "Оптика",
+      "title": "Детали автомобильной оптики",
+      "description": "Крупный план передней фары.",
+      "image": "assets/works/front-light-detail.webp",
+      "thumbnail": "assets/works/front-light-detail-sm.webp"
+    },
+    {
+      "slug": "mirror-ppf-master",
+      "sourcePhoto": 5,
+      "category": "ppf",
+      "categoryLabel": "Защита деталей",
+      "title": "Оклейка зеркала — процесс",
+      "description": "Мастер разглаживает защитную плёнку на боковом зеркале.",
+      "image": "assets/works/mirror-ppf-master.webp",
+      "thumbnail": "assets/works/mirror-ppf-master-sm.webp"
+    }
+  ]
+}

@@ -185,3 +185,45 @@ body{background:linear-gradient(155deg,#303640 0%,#252a32 46%,#333a44 100%) fixe
 .map-branch-tab:not(.active):hover{background:#4a515a}
 .header .nav.open{background:#303640}
 @media(max-width:600px){.header{background:rgba(31,35,42,.98)}}
+
+
+/* Portfolio photography V1: graphite surfaces, yellow 24/38 accent. */
+.works-section{background:linear-gradient(155deg,#303640,#252a32)}
+.works-toolbar{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:26px}
+.works-filters{display:flex;flex-wrap:wrap;gap:8px}
+.works-filter{padding:12px 17px;background:#353b43;border:1px solid #626b78;color:#f0f3f6;font:800 10px Manrope,Arial,sans-serif;letter-spacing:.06em;cursor:pointer}
+.works-filter:hover,.works-filter.active{background:var(--yellow);color:#161616;border-color:var(--yellow)}
+.works-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.works-card{min-width:0;background:#343b45;border:1px solid #58616e;box-shadow:inset 0 1px 0 #ffffff14;transition:border-color .2s,transform .2s}
+.works-card:hover{border-color:var(--yellow);transform:translateY(-3px)}
+.works-card[hidden]{display:none!important}
+.works-image-button{display:block;width:100%;height:clamp(290px,37vw,480px);position:relative;padding:0;background:#20262f;border:0;overflow:hidden;cursor:zoom-in}
+.works-image-button img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 43%;transition:transform .4s}
+.works-card:hover .works-image-button img{transform:scale(1.025)}
+.works-zoom{position:absolute;right:17px;top:17px;background:var(--yellow);color:#111;width:33px;height:33px;display:grid;place-items:center;font-size:20px}
+.works-card-info{padding:22px}
+.works-category{font:800 10px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow)}
+.works-card-info h3{font-size:clamp(22px,2.2vw,32px);margin:10px 0}
+.works-card-info p{font-size:12px;color:#c4cad1;margin:0}
+.works-small-note{font-size:11px;color:#c4cad1;margin:20px 0}
+.works-bottom{display:flex;flex-wrap:wrap;gap:11px;margin-top:27px}
+.works-home{background:linear-gradient(145deg,#363c45,#292e36)}
+.works-home-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.works-home-card{display:block;position:relative;isolation:isolate;min-height:450px;overflow:hidden;border:1px solid #59616c;background:#252b33}
+.works-home-card img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 42%;transition:transform .4s}
+.works-home-card:hover img{transform:scale(1.03)}
+.works-home-card:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#161a1fe9,transparent 60%)}
+.works-home-card-body{position:absolute;inset:auto 0 0;padding:25px}
+.works-home-card-body>span:first-child{font:800 10px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow)}
+.works-home-card-body h3{font-size:clamp(23px,2.4vw,34px);margin:9px 0 0;max-width:260px}
+.works-home-arrow{position:absolute;right:21px;bottom:25px;font-size:25px;color:var(--yellow)}
+.works-home-footer{text-align:right;margin-top:23px}
+.works-lightbox[hidden]{display:none!important}
+.works-lightbox{position:fixed;inset:0;z-index:1001;display:flex;align-items:center;justify-content:center;padding:18px;background:#06080bed;backdrop-filter:blur(12px)}
+.works-lightbox-figure{margin:0;width:min(92vw,990px);height:min(87dvh,1000px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:13px}
+.works-lightbox-figure img{display:block;max-width:100%;max-height:calc(87dvh - 70px);width:auto;height:auto;object-fit:contain}
+.works-lightbox-figure figcaption{color:#fff;font:700 12px Manrope,Arial,sans-serif;text-align:center}
+.works-close{position:absolute;right:23px;top:20px;width:45px;height:45px;background:var(--yellow);border:0;color:#161616;font-size:30px;cursor:pointer}
+@media(max-width:900px){.works-toolbar{display:block}.works-filters{margin-top:18px}.works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.works-home-card{min-height:350px}}
+@media(max-width:620px){.works-grid,.works-home-grid{grid-template-columns:1fr}.works-image-button{height:385px}.works-home-card{min-height:435px}.works-filter{padding:10px 11px;font-size:9px}.works-bottom .btn,.works-home-footer .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.works-card,.works-image-button img,.works-home-card img{transition:none!important;transform:none!important}}
