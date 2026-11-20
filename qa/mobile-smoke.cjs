@@ -38,6 +38,20 @@ for(const width of viewports){
       assert(v.fit==='cover',width+' hero video full bleed CSS '+v.fit);
       assert(Math.abs(v.videoWidth-v.heroWidth)<=2,width+' hero video spans whole frame '+v.videoWidth+'/'+v.heroWidth);
       assert(v.muted&&v.loop&&v.autoplay&&v.playsInline,width+' hero autoplay attrs');
+      await p.waitForFunction(() => {
+        const el=document.getElementById('hero-background-video');
+        return el && el.readyState>=2;
+      },null,{timeout:15000}).catch(()=>{});
+      const atStart=await p.locator('#hero-background-video').evaluate(el=>({time:el.currentTime,paused:el.paused,readyState:el.readyState}));
+      await p.waitForTimeout(650);
+      const atEnd=await p.locator('#hero-background-video').evaluate(el=>({time:el.currentTime,paused:el.paused,readyState:el.readyState}));
+      assert(!atEnd.paused && atEnd.time-atStart.time>.12,width+' hero video actually advances '+JSON.stringify({from:atStart,to:atEnd}));
+      if(width===390||width===1440){
+        await p.locator('[data-contact]').first().click();
+        assert(await p.locator('#contact-modal').isVisible(),width+' contact modal opens');
+        await p.keyboard.press('Escape');
+        assert(await p.locator('#contact-modal').isHidden(),width+' contact modal Escape close');
+      }
       if(width===390||width===1440)await p.screenshot({path:'qa-results/home-'+width+'.png',fullPage:false});
       if(width<=430){
        await p.locator('.menu-toggle').click();
