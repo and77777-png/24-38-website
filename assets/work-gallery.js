@@ -13,8 +13,12 @@ backdrop.innerHTML='<button type="button" class="works-close" aria-label="Зак
 document.body.append(backdrop);
 const img=backdrop.querySelector('img'),caption=backdrop.querySelector('figcaption'),close=backdrop.querySelector('.works-close');let opener=null;
 function hide(){backdrop.hidden=true;document.body.style.overflow='';opener?.focus()}
-function show(button){opener=button;const card=button.closest('.works-card'),thumb=button.querySelector('img');img.src=thumb.src;img.alt=thumb.alt;caption.textContent=card.querySelector('h3').textContent;backdrop.hidden=false;document.body.style.overflow='hidden';close.focus()}
+function show(button){opener=button;const card=button.closest('.works-card'),thumb=button.querySelector('img');img.src=thumb.getAttribute('src');img.alt=thumb.alt;caption.textContent=card.querySelector('h3').textContent;backdrop.hidden=false;document.body.style.overflow='hidden';close.focus()}
 document.querySelectorAll('[data-work-open]').forEach(b=>b.addEventListener('click',()=>show(b)));
 close.addEventListener('click',hide);backdrop.addEventListener('click',e=>{if(e.target===backdrop)hide()});
-document.addEventListener('keydown',e=>{if(!backdrop.hidden&&e.key==='Escape')hide()});
+document.addEventListener('keydown',e=>{
+ if(backdrop.hidden)return;
+ if(e.key==='Escape'){e.preventDefault();hide()}
+ else if(e.key==='Tab'){e.preventDefault();close.focus()}
+});
 })();
