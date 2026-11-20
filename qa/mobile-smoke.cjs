@@ -9,7 +9,7 @@ const errors=[];
 const ok=[];
 function assert(condition,label){if(!condition){errors.push(label);console.log('FAIL',label)}else{ok.push(label);console.log('PASS',label)}}
 (async()=>{
-const browser=await chromium.launch({headless:true,args:['--no-sandbox','--autoplay-policy=no-user-gesture-required']});
+const browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox','--autoplay-policy=no-user-gesture-required']});
 fs.mkdirSync('qa-results',{recursive:true});
 for(const width of viewports){
   const height=width<=430?844:(width<=768?1024:900);
