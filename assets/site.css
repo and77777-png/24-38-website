@@ -282,3 +282,17 @@ body{background:linear-gradient(155deg,#303640 0%,#252a32 46%,#333a44 100%) fixe
 @media(prefers-reduced-motion:reduce){
   .hero-photo.hero-video-layer .hero-video{animation:none}
 }
+
+
+/* Contrast pass: vivid purple buttons, lighter lavender for small text on graphite. */
+:root{--accent-text:#d3b5ff;--accent-heading:#b88aff}
+.nav a:hover,.nav a.active,.crumbs a,.link-arrow:hover,.service-item button:hover,
+.film-bottom button:hover,.footer-col a:hover{color:var(--accent-text)!important}
+.works-category,.works-home-card-body span:first-child,.map-sidebar-eyebrow,
+.map-selected-label,.map-phone,.map-help a,.branch .phone,.branch-no,
+.film-bottom strong,.service-item .n,.tile .tile-no,.works-home-arrow,
+.hero-counter a:hover,.contact-number-grid strong,.copy-result,
+.works-filter:not(.active):hover,.works-bottom .link-arrow:hover{color:var(--accent-text)}
+.accent,.hero-copy h1 strong,.page-head h1 em,.wide-panel h2 em,
+.numbers b{color:var(--accent-heading)}
+.btn-primary:focus-visible,.mobile-call:focus-visible,.works-filter:focus-visible{outline-color:var(--accent-text)}
