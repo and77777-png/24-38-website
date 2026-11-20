@@ -1,0 +1,35 @@
+name: 24-38 mobile visual QA
+on:
+  push:
+    branches:
+      - design/purple-fullbleed-mobile-qa-20261120
+  workflow_dispatch:
+jobs:
+  browser-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Use preinstalled Chrome and install Playwright JS
+        run: |
+          which google-chrome
+          google-chrome --version
+          npm install --no-save playwright
+      - name: Start static site
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/site-server.log 2>&1 &
+          sleep 2
+      - name: Audit all seven pages on seven viewport widths
+        run: node qa/mobile-smoke.cjs
+      - name: Preserve QA report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-visual-qa
+          path: qa-results
+          if-no-files-found: warn
