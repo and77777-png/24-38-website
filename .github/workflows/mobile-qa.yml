@@ -15,10 +15,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install Playwright and Chromium
+      - name: Use preinstalled Chrome and install Playwright JS
         run: |
+          which google-chrome
+          google-chrome --version
           npm install --no-save playwright
-          npx playwright install --with-deps chromium
       - name: Start static site
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/site-server.log 2>&1 &
