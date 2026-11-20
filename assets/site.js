@@ -28,6 +28,6 @@
     $('#shop-status')&&( $('#shop-status').textContent=`${count} вариантов материала · Цены по запросу`);
     $('#empty-results')?.classList.toggle('show',count===0);
   };
-  filters.forEach(f=>f.addEventListener('click',()=>{active=f.dataset.filter;filters.forEach(x=>x.classList.toggle('active',x===f));render()}));
+  filters.forEach(f=>f.addEventListener('click',()=>{active=f.dataset.filter;filters.forEach(x=>{const on=x===f;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});render()}));
   search?.addEventListener('input',render);
 })();
