@@ -90,9 +90,11 @@ for(const width of viewports){
     if(path==='contacts.html'){
       const tabs=p.locator('[data-map-location]');
       assert(await tabs.count()===2,width+' map 2 branches');
+      const firstPhone=await p.locator('[data-map-phone]').getAttribute('href');
+      assert(firstPhone==='tel:+79130302224',width+' default branch 1 is Alexeeva');
       await tabs.nth(1).click();
       const phone=await p.locator('[data-map-phone]').getAttribute('href');
-      assert(phone==='tel:+79130302224',width+' map switches phone to branch 2');
+      assert(phone==='tel:+79135597770',width+' map switches phone to branch 2');
     }
     assert(jsErrors.length===0,width+' '+path+' no JS errors '+jsErrors.join(' | '));
     jsErrors.length=0;
