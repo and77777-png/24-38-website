@@ -28,8 +28,8 @@
       "sourcePhoto": 3,
       "category": "styling",
       "categoryLabel": "Детали и стайлинг",
-      "title": "Эмблема Volkswagen",
-      "description": "Крупный план эмблемы с белой подсветкой.",
+      "title": "Оклейка зон риска",
+      "description": "Крупный план детали передней части автомобиля.",
       "image": "assets/works/vw-white-emblem.webp",
       "thumbnail": "assets/works/vw-white-emblem-sm.webp"
     },
@@ -49,7 +49,7 @@
       "category": "styling",
       "categoryLabel": "Детали и стайлинг",
       "title": "Эмблема с красной подсветкой",
-      "description": "Работа с эмблемой Volkswagen и красным световым акцентом.",
+      "description": "Крупный план детали автомобиля с красным световым акцентом.",
       "image": "assets/works/vw-red-emblem.webp",
       "thumbnail": "assets/works/vw-red-emblem-sm.webp"
     },
